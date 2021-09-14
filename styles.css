@@ -1,12 +1,11 @@
 .main-container {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
 }
 
 .form-container {
   background-color: #A9AAD2;
-  padding: 20px;
+  padding: 40px 400px 40px 400px;
 }
 
 .grid-container {
@@ -15,18 +14,18 @@
   grid-template-columns: repeat(3, 1fr);
 }
 
-.box {
-  border: 1px solid green;
-  padding: 20px;
-  margin: 10px;
-}
-
 .side-bar-container {
-  width: 15%;
+  width: 25%;
   height: 100%;
   background-color: #1f1f3d;
   color: #E9E9F3;
   font-family: 'Open Sans', sans-serif;
+}
+
+.box {
+  border: 1px solid green;
+  padding: 20px;
+  margin: 10px;
 }
 
 .side-bar-header {
@@ -53,7 +52,6 @@
   font-weight: bold;
   font-size: 16px;
 }
-
 
 .form-input {
   width: 100%;

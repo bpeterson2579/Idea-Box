@@ -5,8 +5,8 @@ class Idea {
     this.isFavorite = false;
     this.id = Date.now();
   }
-  saveToStorage() {
-    // save the instance to storage.
+  saveToStorage(instance) {
+    ideas.push(instance);
   }
   deleteFromStorage() {
     //delete from storage.

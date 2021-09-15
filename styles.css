@@ -94,14 +94,19 @@ main {
   text-align: 50%;
 }
 
-.save-button {
+.locked-button {
   width: 100%;
-  background-color: #1F1F3D;
-  color: #E9E9F3;
+  background-color: #c2bcbc;
+  color: gray;
   border-radius: 4px;
   padding: 10px;
   font-weight: bold;
   font-size: 16px;
+}
+
+.save-button {
+  background-color: #1F1F3D;
+  color: #E9E9F3;
   cursor: pointer;
 }
 

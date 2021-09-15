@@ -11,6 +11,18 @@ var gridContainer = document.querySelector('.grid-container');
 
 
 saveButton.addEventListener('click', createIdeaCard);
+// document.addEventListener('DOMContentLoaded', lockSaveButton);
+// inputTitle.addEventListener('keyup', lockSaveButton);
+// inputBody.addEventListener('keyup', lockSaveButton);
+//
+
+function lockSaveButton() {
+  if (!inputTitle.value === '' && !inputBody.value === '') {
+    saveButton.classList.add('save-button');
+  } else {
+    saveButton.disabled = true;
+  }
+}
 
 function createIdeaCard() {
   event.preventDefault();
@@ -47,5 +59,16 @@ function displayIdeaCard() {
 function clearForm() {
   inputBody.value = '';
   inputTitle.value = '';
-
 }
+
+function show(element) {
+  element.classList.remove('hidden');
+}
+
+function hide(element) {
+  element.classList.add('hidden');
+}
+//access the input fields
+//access the save saveButton
+//check if inputs have values
+//if no values, apply alt css style. (button is disabled, lighter color and no pointer)

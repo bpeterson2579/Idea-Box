@@ -10,20 +10,18 @@ class Idea {
     ideas.push(instance);
   }
 
-  deleteFromStorage() {
-    for (var i = 0; i < ideas.length; i++) {
-      if (this.id === ideas[i].id) {
-        ideas.splice(i, 1);
-      }
-    }
+  deleteFromStorage(i) {
+    ideas.splice(i, 1);
     displayIdeaCard();
   }
 
-  updateIdea() {
-    if (this.isFavorite) {
-      this.isFavorite = false;
-    } else {
+  updateIdea(i) {
+    if (!this.isFavorite) {
       this.isFavorite = true;
+      cardFavorite(i);
+    } else {
+      console.log('favorite', this.isFavorite);
+      this.isFavorite = false;
     }
   }
 }

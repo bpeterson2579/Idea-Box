@@ -18,10 +18,10 @@ inputBody.addEventListener('keyup', lockSaveButton);
 
 function lockSaveButton() {
   if (inputTitle.value === '' || inputBody.value === '') {
-    console.log('hello')
     saveButton.disabled = true;
   } else {
     saveButton.classList.add('save-button');
+    saveButton.disabled = false;
   }
 }
 

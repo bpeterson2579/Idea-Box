@@ -3,18 +3,18 @@ var ideaBox;
 
 var inputTitle = document.querySelector('#titleInput');
 var inputBody = document.querySelector('#bodyInput');
-
 var saveButton = document.querySelector('.locked-button');
 var searchIdeasButton = document.querySelector('.search-button');
 var searchIdeasInput = document.querySelector('.search-input');
 var gridContainer = document.querySelector('.grid-container');
 
 
+
 saveButton.addEventListener('click', createIdeaCard);
 document.addEventListener('DOMContentLoaded', lockSaveButton);
 inputTitle.addEventListener('keyup', lockSaveButton);
 inputBody.addEventListener('keyup', lockSaveButton);
-
+gridContainer.addEventListener('click', deleteIdeaCard);
 
 function lockSaveButton() {
   if (inputTitle.value === '' || inputBody.value === '') {
@@ -41,9 +41,9 @@ function displayIdeaCard() {
     gridContainer.innerHTML += `
       <div class="box">
         <header class="card-header">
-          <img src="assets/star.svg" class="comment-star-delete-img">
+          <img src="assets/star.svg" class="comment-star-delete-img" id="${ideas[i].id}">
           <img src="assets/star-active.svg" class="card-star-active hidden">
-          <img src="assets/delete.svg" class="comment-star-delete-img">
+          <img src="assets/delete.svg" class="comment-star-delete-img" id="${ideas[i].id}">
         </header>
         <div class="user-idea">
           <h4 class="user-title">${ideas[i].title}</h4>
@@ -54,6 +54,14 @@ function displayIdeaCard() {
           <p class="card-comment">Comment</p>
         </footer>
       </div>`
+  }
+}
+
+function deleteIdeaCard(event) {
+  for (var i = 0; i < ideas.length; i++) {
+    if (ideas[i].id === Number(event.target.id)) {
+      ideas[i].deleteFromStorage();
+    }
   }
 }
 
@@ -69,7 +77,8 @@ function show(element) {
 function hide(element) {
   element.classList.add('hidden');
 }
-//access the input fields
-//access the save saveButton
-//check if inputs have values
-//if no values, apply alt css style. (button is disabled, lighter color and no pointer)
+
+// When I click the “Star” button on an idea card,
+// The card instance’s star property should be updated in the ideas array
+// When the button was an outline of a star (not favorited), the button should now be a filled in star (favorited)
+// and vice versa (for unfavoriting)

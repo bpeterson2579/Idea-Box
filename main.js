@@ -18,7 +18,8 @@ function createIdeaCard() {
   ideaBox = new Idea(inputTitle.value, inputBody.value);
   ideaBox.saveToStorage(ideaBox);
 
-  displayIdeaCard()
+  displayIdeaCard();
+  clearForm();
 }
 
 function displayIdeaCard() {
@@ -41,4 +42,10 @@ function displayIdeaCard() {
         </footer>
       </div>`
   }
+}
+
+function clearForm() {
+  inputBody.value = '';
+  inputTitle.value = '';
+
 }

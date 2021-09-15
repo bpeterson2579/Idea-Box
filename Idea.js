@@ -5,12 +5,20 @@ class Idea {
     this.isFavorite = false;
     this.id = Date.now();
   }
+
   saveToStorage(instance) {
     ideas.push(instance);
   }
+
   deleteFromStorage() {
-    //delete from storage.
+    for (var i = 0; i < ideas.length; i++) {
+      if (this.id === ideas[i].id) {
+        ideas.splice(i, 1);
+      }
+    }
+    displayIdeaCard();
   }
+
   updateIdea() {
     if (this.isFavorite) {
       this.isFavorite = false;

@@ -41,7 +41,7 @@ function displayIdeaCard() {
     gridContainer.innerHTML += `
       <div class="box">
         <header class="card-header">
-          <img src="assets/star.svg" class="comment-star-delete-img">
+          <img src="assets/star.svg" class="comment-star-delete-img" id="${ideas[i].id}">
           <img src="assets/star-active.svg" class="card-star-active hidden">
           <img src="assets/delete.svg" class="comment-star-delete-img" id="${ideas[i].id}">
         </header>
@@ -60,11 +60,9 @@ function displayIdeaCard() {
 function deleteIdeaCard(event) {
   for (var i = 0; i < ideas.length; i++) {
     if (ideas[i].id === Number(event.target.id)) {
-      console.log('hello');
-      ideas.splice(i, 1);
+      ideas[i].deleteFromStorage();
     }
   }
-  displayIdeaCard();
 }
 
 function clearForm() {

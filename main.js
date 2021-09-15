@@ -4,23 +4,24 @@ var ideaBox;
 var inputTitle = document.querySelector('#titleInput');
 var inputBody = document.querySelector('#bodyInput');
 
-var saveButton = document.querySelector('.save-button');
+var saveButton = document.querySelector('.locked-button');
 var searchIdeasButton = document.querySelector('.search-button');
 var searchIdeasInput = document.querySelector('.search-input');
 var gridContainer = document.querySelector('.grid-container');
 
 
 saveButton.addEventListener('click', createIdeaCard);
-// document.addEventListener('DOMContentLoaded', lockSaveButton);
-// inputTitle.addEventListener('keyup', lockSaveButton);
-// inputBody.addEventListener('keyup', lockSaveButton);
-//
+document.addEventListener('DOMContentLoaded', lockSaveButton);
+inputTitle.addEventListener('keyup', lockSaveButton);
+inputBody.addEventListener('keyup', lockSaveButton);
+
 
 function lockSaveButton() {
-  if (!inputTitle.value === '' && !inputBody.value === '') {
-    saveButton.classList.add('save-button');
-  } else {
+  if (inputTitle.value === '' || inputBody.value === '') {
+    console.log('hello')
     saveButton.disabled = true;
+  } else {
+    saveButton.classList.add('save-button');
   }
 }
 

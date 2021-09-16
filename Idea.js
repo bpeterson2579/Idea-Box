@@ -6,8 +6,8 @@ class Idea {
     this.id = Date.now();
   }
 
-  saveToStorage(instance) {
-    ideas.push(instance);
+  saveToStorage() {
+    ideas.push(this);
   }
 
   deleteFromStorage(i) {
@@ -18,11 +18,9 @@ class Idea {
   updateIdea(i) {
     if (!this.isFavorite) {
       this.isFavorite = true;
-      cardFavorite(i);
 
     } else {
       this.isFavorite = false;
-      cardUnfavorite(i);
     }
   }
 }

@@ -30,7 +30,7 @@ function createIdeaCard() {
   event.preventDefault();
 
   ideaBox = new Idea(inputTitle.value, inputBody.value);
-  ideaBox.saveToStorage(ideaBox);
+  ideaBox.saveToStorage();
   saveToLocalStorage(ideas);
   displayIdeaCard();
   clearForm();

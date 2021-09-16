@@ -6,8 +6,8 @@ class Idea {
     this.id = Date.now();
   }
 
-  saveToStorage(instance) {
-    ideas.push(instance);
+  saveToStorage() {
+    ideas.push(this);
   }
 
   deleteFromStorage(i) {

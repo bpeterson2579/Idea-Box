@@ -19,9 +19,10 @@ class Idea {
     if (!this.isFavorite) {
       this.isFavorite = true;
       cardFavorite(i);
+
     } else {
-      console.log('favorite', this.isFavorite);
       this.isFavorite = false;
+      cardUnfavorite(i);
     }
   }
 }

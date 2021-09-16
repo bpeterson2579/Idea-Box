@@ -61,7 +61,7 @@ function changeCard(event) {
   for (var i = 0; i < ideas.length; i++) {
     if (ideas[i].id === Number(event.target.id)) {
       favoriteIdeaCard();
-    }else {
+    } else {
       deleteIdeaCard();
     }
   }
@@ -71,6 +71,8 @@ function deleteIdeaCard() {
   for (var i = 0; i < ideas.length; i++) {
     if (ideas[i].id - 1 === Number(event.target.id)) {
       ideas[i].deleteFromStorage(i);
+    } else {
+      ideas[i].updateIdea(i);
     }
   }
 }
@@ -79,8 +81,6 @@ function favoriteIdeaCard() {
   for (var i = 0; i < ideas.length; i++) {
     if (ideas[i].id === Number(event.target.id)) {
       ideas[i].updateIdea(i);
-    }else if (event.target.class === 'card-star-active'){
-      console.log('helllo');
     }
   }
 }
@@ -88,8 +88,17 @@ function favoriteIdeaCard() {
 function cardFavorite(i) {
   var star = document.getElementById(`${ideas[i].id}`);
   var activeStar = document.getElementById(`${[i]}`);
-  show(activeStar);
-  hide(star);
+  if (ideas.isFavorite = true) {
+    show(activeStar);
+    hide(star);
+  }
+}
+
+function cardUnfavorite(i) {
+  var star = document.getElementById(`${ideas[i].id}`);
+  var activeStar = document.getElementById(`${[i]}`);
+  hide(activeStar);
+  show(star);
 }
 
 function clearForm() {

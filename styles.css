@@ -32,8 +32,13 @@ main {
 }
 
 .search-button {
-  height: 15px;
-  width: 15px;
+  height: 22px;
+  width: 25px;
+  background-color: #3b0054;
+  padding: 10px;
+  margin-top: 5px;
+  display: flex;
+  border-radius: 4px;
 }
 
 .box {
@@ -79,19 +84,31 @@ main {
   font-size: 16px;
 }
 
-.form-input {
+.form-input,
+.search-input,
+.body-input {
   width: 100%;
-  padding: 12px 20px;
+  padding: 12px 5px;
   margin-top: 5px;
-  margin-bottom: 15px;
-  display: block;
-  border: 1px solid #ccc;
+  margin-bottom: 25px;
+  border: 1.5px solid #1F1F3D;
   border-radius: 4px;
   box-sizing: border-box;
 }
 
+.body-input {
+  height: 100px;
+  font-family: 'Open Sans', sans-serif;
+}
+
 .input-label {
   text-align: 50%;
+}
+
+.input-area {
+  display: flex;
+  flex-direction: row-reverse;
+  /* grid-template-columns: 1fr auto; */
 }
 
 .locked-button {
@@ -102,12 +119,14 @@ main {
   padding: 10px;
   font-weight: bold;
   font-size: 16px;
+  margin-bottom: 25px;
 }
 
 .save-button {
-  background-color: #1F1F3D;
+  background-color: #3b0054;
   color: #E9E9F3;
   cursor: pointer;
+  margin-bottom: 25px;
 }
 
 .hidden {

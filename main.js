@@ -23,6 +23,7 @@ function lockSaveButton() {
     saveButton.classList.add('save-button');
     saveButton.disabled = false;
   }
+  pullFromLocalStorage();
 }
 
 function createIdeaCard() {
@@ -30,19 +31,31 @@ function createIdeaCard() {
 
   ideaBox = new Idea(inputTitle.value, inputBody.value);
   ideaBox.saveToStorage(ideaBox);
-
+  saveToLocalStorage(ideas);
   displayIdeaCard();
   clearForm();
 }
 
+function saveToLocalStorage(ideas) {
+  var stringifiedIdeas = JSON.stringify(ideas);
+  localStorage.setItem("stringIdeas", stringifiedIdeas);
+}
+
+function pullFromLocalStorage() {
+  var retrievedIdeas = localStorage.getItem("stringIdeas");
+  ideas = JSON.parse(retrievedIdeas);
+}
+
+
 function displayIdeaCard() {
   gridContainer.innerHTML = '';
+
   for (var i = 0; i < ideas.length; i++) {
     gridContainer.innerHTML += `
       <div class="box">
         <header class="card-header">
           <img src="assets/star.svg" class="comment-star-delete-img" id="${ideas[i].id}">
-          <img src="assets/star-active.svg" class="card-star-active hidden" id="${[i]}">
+          <img src="assets/star-active.svg" class="card-star-active hidden" id="${ideas[i].id}">
           <img src="assets/delete.svg" class="comment-star-delete-img" id="${ideas[i].id - 1}">
         </header>
         <div class="user-idea">
@@ -55,6 +68,7 @@ function displayIdeaCard() {
         </footer>
       </div>`
   }
+  clearForm();
 }
 
 function changeCard(event) {
@@ -81,25 +95,24 @@ function favoriteIdeaCard() {
   for (var i = 0; i < ideas.length; i++) {
     if (ideas[i].id === Number(event.target.id)) {
       ideas[i].updateIdea(i);
+
     }
   }
 }
 
-function cardFavorite(i) {
-  var star = document.getElementById(`${ideas[i].id}`);
-  var activeStar = document.getElementById(`${[i]}`);
-  if (ideas.isFavorite = true) {
+function favoriteStatus() {
+  var star = document.querySelector(".comment-star-delete-img");
+  var activeStar = document.querySelector(".card-star-active");
+
+  if (ideas[i].isFavorite) {
     show(activeStar);
     hide(star);
+  } else {
+    hide(activeStar);
+    show(star);
   }
 }
 
-function cardUnfavorite(i) {
-  var star = document.getElementById(`${ideas[i].id}`);
-  var activeStar = document.getElementById(`${[i]}`);
-  hide(activeStar);
-  show(star);
-}
 
 function clearForm() {
   inputBody.value = '';

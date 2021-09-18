@@ -15,7 +15,7 @@ class Idea {
     displayIdeaCard();
   }
 
-  updateIdea(i) {
+  updateIdea() {
     if (!this.isFavorite) {
       this.isFavorite = true;
 

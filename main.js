@@ -11,19 +11,19 @@ var gridContainer = document.querySelector('.grid-container');
 
 
 saveButton.addEventListener('click', createIdeaCard);
-document.addEventListener('DOMContentLoaded', lockSaveButton);
+document.addEventListener('DOMContentLoaded', displayIdeaCard);
 inputTitle.addEventListener('keyup', lockSaveButton);
 inputBody.addEventListener('keyup', lockSaveButton);
 gridContainer.addEventListener('click', changeCard);
 
 function lockSaveButton() {
   if (inputTitle.value === '' || inputBody.value === '') {
+    saveButton.classList.remove('save-button');
     saveButton.disabled = true;
   } else {
     saveButton.classList.add('save-button');
     saveButton.disabled = false;
   }
-  pullFromLocalStorage();
 }
 
 function createIdeaCard() {
@@ -31,7 +31,9 @@ function createIdeaCard() {
 
   ideaBox = new Idea(inputTitle.value, inputBody.value);
   ideaBox.saveToStorage();
+
   saveToLocalStorage(ideas);
+
   displayIdeaCard();
   clearForm();
 }
@@ -46,58 +48,61 @@ function pullFromLocalStorage() {
   ideas = JSON.parse(retrievedIdeas);
 }
 
-
 function displayIdeaCard() {
-  gridContainer.innerHTML = '';
+  pullFromLocalStorage();
 
+  gridContainer.innerHTML = '';
   for (var i = 0; i < ideas.length; i++) {
     gridContainer.innerHTML += `
       <div class="box">
         <header class="card-header">
-          <img src="assets/star.svg" class="comment-star-delete-img" id="${ideas[i].id}">
-          <img src="assets/star-active.svg" class="card-star-active hidden" id="${ideas[i].id}">
-          <img src="assets/delete.svg" class="comment-star-delete-img" id="${ideas[i].id - 1}">
+          <img src="assets/star.svg" class="star-img" id="${ideas[i].id}">
+          <img src="assets/star-active.svg" class="star-active-img hidden" id="${ideas[i].id}">
+          <img src="assets/delete.svg" class="delete-img" id="${ideas[i].id}">
         </header>
         <div class="user-idea">
           <h4 class="user-title">${ideas[i].title}</h4>
           <p>${ideas[i].body}</p>
         </div>
         <footer class="card-footer">
-          <img src="assets/comment.svg" class="comment-star-delete-img">
+          <img src="assets/comment.svg" class="comment-img">
           <p class="card-comment">Comment</p>
         </footer>
       </div>`
   }
   clearForm();
+  lockSaveButton();
 }
 
 function changeCard(event) {
-  for (var i = 0; i < ideas.length; i++) {
-    if (ideas[i].id === Number(event.target.id)) {
-      favoriteIdeaCard();
-    } else {
-      deleteIdeaCard();
-    }
+  if (event.target.classList.contains('star-img')) {
+    favoriteIdeaCard(event.target.id);
+  }else if (event.target.classList.contains('delete-img')) {
+    deleteIdeaCard(event);
   }
 }
 
-function deleteIdeaCard() {
+function deleteIdeaCard(event) {
   for (var i = 0; i < ideas.length; i++) {
-    if (ideas[i].id - 1 === Number(event.target.id)) {
-      ideas[i].deleteFromStorage(i);
-    } else {
-      ideas[i].updateIdea(i);
+    if (ideas[i].id === Number(event.target.id)) {
+      ideas.splice(i, 1);
+      saveToLocalStorage(ideas);
+      displayIdeaCard();
     }
   }
 }
 
 function favoriteIdeaCard() {
-  for (var i = 0; i < ideas.length; i++) {
-    if (ideas[i].id === Number(event.target.id)) {
-      ideas[i].updateIdea(i);
-
+  if (event.target.classList.contains('star-img')) {
+    for (var i = 0; i < ideas.length; i++) {
+      console.log(i);
     }
   }
+  // for (var i = 0; i < ideas.length; i++) {
+  //   if (ideas[i].id === Number(event.target.id)) {
+  //     ideas[i].updateIdea(i);
+  //   }
+  // }
 }
 
 function favoriteStatus() {

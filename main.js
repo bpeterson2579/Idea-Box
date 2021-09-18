@@ -50,7 +50,12 @@ function pullFromLocalStorage() {
 
 function displayIdeaCard() {
   pullFromLocalStorage();
+  renderCards();
+  clearForm();
+  lockSaveButton();
+}
 
+function renderCards() {
   gridContainer.innerHTML = '';
   for (var i = 0; i < ideas.length; i++) {
     gridContainer.innerHTML += `
@@ -69,55 +74,60 @@ function displayIdeaCard() {
           <p class="card-comment">Comment</p>
         </footer>
       </div>`
+    changeFavoriteImg(i);
   }
-  clearForm();
-  lockSaveButton();
 }
 
 function changeCard(event) {
-  if (event.target.classList.contains('star-img')) {
+  if (event.target.classList.contains('star-img') || event.target.classList.contains('active-star-img')) {
     favoriteIdeaCard(event.target.id);
   }else if (event.target.classList.contains('delete-img')) {
-    deleteIdeaCard(event);
+    deleteIdeaCard(event.target.id);
   }
 }
 
-function deleteIdeaCard(event) {
+function deleteIdeaCard(id) {
   for (var i = 0; i < ideas.length; i++) {
-    if (ideas[i].id === Number(event.target.id)) {
+    if (ideas[i].id === Number(id)) {
       ideas.splice(i, 1);
+      // ^^^^ Maybe refactor at end of project? //
+      // ideaBox.deleteFromStorage(i);
       saveToLocalStorage(ideas);
       displayIdeaCard();
     }
   }
 }
 
-function favoriteIdeaCard() {
-  if (event.target.classList.contains('star-img')) {
-    for (var i = 0; i < ideas.length; i++) {
-      console.log(i);
+
+function favoriteIdeaCard(id) {
+  for (var i = 0; i < ideas.length; i++) {
+    if (ideas[i].id === Number(id) && !ideas[i].isFavorite) {
+      ideas[i].isFavorite = true;
+      changeFavoriteImg(i);
+      console.log('isFavorite true');
+      saveToLocalStorage(ideas);
+    }else if(ideas[i].id === Number(id) && ideas[i].isFavorite){
+      ideas[i].isFavorite = false;
+      console.log('isFavorite false');
+      saveToLocalStorage(ideas);
+    }else {
+      console.log('fail');
     }
   }
-  // for (var i = 0; i < ideas.length; i++) {
-  //   if (ideas[i].id === Number(event.target.id)) {
-  //     ideas[i].updateIdea(i);
-  //   }
-  // }
 }
 
-function favoriteStatus() {
-  var star = document.querySelector(".comment-star-delete-img");
-  var activeStar = document.querySelector(".card-star-active");
+function changeFavoriteImg(index) {
+  var star = document.querySelector(".star-img");
+  var activeStar = document.querySelector(".star-active-img");
 
-  if (ideas[i].isFavorite) {
-    show(activeStar);
+  if (ideas[index].isFavorite) {
     hide(star);
-  } else {
+    show(activeStar);
+  }else {
     hide(activeStar);
     show(star);
   }
 }
-
 
 function clearForm() {
   inputBody.value = '';

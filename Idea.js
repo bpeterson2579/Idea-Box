@@ -12,7 +12,6 @@ class Idea {
 
   deleteFromStorage(i) {
     ideas.splice(i, 1);
-    displayIdeaCard();
   }
 
   updateIdea() {

@@ -75,7 +75,7 @@ main {
   padding: 20px 10px 10px 20px;
 }
 
-.show-idea-button {
+.show-filter-button, .show-all-button {
   background-color: #5356A4;
   color: #E9E9F3;
   text-align: center;
@@ -155,7 +155,7 @@ main {
   color: #E9E9F3;
 }
 
-.delete-img, .star-img, .star-active-img, .comment-img {
+.delete-img, .star-img, .comment-img {
   height: 25px;
   width: 25px;
   cursor: pointer;

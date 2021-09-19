@@ -7,6 +7,7 @@ var saveButton = document.querySelector('.locked-button');
 var searchIdeasButton = document.querySelector('.search-button');
 var searchIdeasInput = document.querySelector('.search-input');
 var gridContainer = document.querySelector('.grid-container');
+var showFavoriteIdeas = document.querySelector('.show-idea-button');
 
 
 
@@ -15,16 +16,7 @@ document.addEventListener('DOMContentLoaded', displayIdeaCard);
 inputTitle.addEventListener('keyup', lockSaveButton);
 inputBody.addEventListener('keyup', lockSaveButton);
 gridContainer.addEventListener('click', changeCard);
-
-function lockSaveButton() {
-  if (inputTitle.value === '' || inputBody.value === '') {
-    saveButton.classList.remove('save-button');
-    saveButton.disabled = true;
-  } else {
-    saveButton.classList.add('save-button');
-    saveButton.disabled = false;
-  }
-}
+showFavoriteIdeas.addEventListener('click', filterFavorites);
 
 function createIdeaCard() {
   event.preventDefault();
@@ -35,7 +27,6 @@ function createIdeaCard() {
   saveToLocalStorage(ideas);
 
   displayIdeaCard();
-  clearForm();
 }
 
 function saveToLocalStorage(ideas) {
@@ -49,20 +40,27 @@ function pullFromLocalStorage() {
 }
 
 function displayIdeaCard() {
-  pullFromLocalStorage();
+  if (localStorage.hasOwnProperty("stringIdeas")) {
+    pullFromLocalStorage();
+  }
   renderCards();
   clearForm();
   lockSaveButton();
 }
 
 function renderCards() {
+  var starPicture;
   gridContainer.innerHTML = '';
   for (var i = 0; i < ideas.length; i++) {
+    if (ideas[i].isFavorite) {
+      starPicture = "assets/star-active.svg";
+    }else {
+      starPicture = "assets/star.svg";
+    }
     gridContainer.innerHTML += `
       <div class="box">
         <header class="card-header">
-          <img src="assets/star.svg" class="star-img" id="${ideas[i].id}">
-          <img src="assets/star-active.svg" class="star-active-img hidden" id="${ideas[i].id}">
+          <img src=${starPicture} class="star-img" id="${ideas[i].id}">
           <img src="assets/delete.svg" class="delete-img" id="${ideas[i].id}">
         </header>
         <div class="user-idea">
@@ -74,7 +72,6 @@ function renderCards() {
           <p class="card-comment">Comment</p>
         </footer>
       </div>`
-    changeFavoriteImg(i);
   }
 }
 
@@ -98,40 +95,45 @@ function deleteIdeaCard(id) {
   }
 }
 
-
 function favoriteIdeaCard(id) {
   for (var i = 0; i < ideas.length; i++) {
     if (ideas[i].id === Number(id) && !ideas[i].isFavorite) {
       ideas[i].isFavorite = true;
-      changeFavoriteImg(i);
-      console.log('isFavorite true');
       saveToLocalStorage(ideas);
+      displayIdeaCard();
     }else if(ideas[i].id === Number(id) && ideas[i].isFavorite){
       ideas[i].isFavorite = false;
-      console.log('isFavorite false');
       saveToLocalStorage(ideas);
-    }else {
-      console.log('fail');
+      displayIdeaCard();
     }
   }
 }
 
-function changeFavoriteImg(index) {
-  var star = document.querySelector(".star-img");
-  var activeStar = document.querySelector(".star-active-img");
-
-  if (ideas[index].isFavorite) {
-    hide(star);
-    show(activeStar);
-  }else {
-    hide(activeStar);
-    show(star);
+function filterFavorites() {
+  showFavoriteIdeas.innerText = 'Show All Ideas';
+  console.log('1st', ideas);
+  for (var i = 0; i < ideas.length; i++) {
+    if (!ideas[i].isFavorite) {
+      ideas.splice(i, 1);
+      console.log(i, ideas);
+    }
   }
+  displayIdeaCard();
 }
 
 function clearForm() {
   inputBody.value = '';
   inputTitle.value = '';
+}
+
+function lockSaveButton() {
+  if (inputTitle.value === '' || inputBody.value === '') {
+    saveButton.classList.remove('save-button');
+    saveButton.disabled = true;
+  } else {
+    saveButton.classList.add('save-button');
+    saveButton.disabled = false;
+  }
 }
 
 function show(element) {

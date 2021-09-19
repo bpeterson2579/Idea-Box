@@ -12,10 +12,9 @@ class Idea {
 
   deleteFromStorage(i) {
     ideas.splice(i, 1);
-    displayIdeaCard();
   }
 
-  updateIdea(i) {
+  updateIdea() {
     if (!this.isFavorite) {
       this.isFavorite = true;
 

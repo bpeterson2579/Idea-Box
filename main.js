@@ -7,6 +7,7 @@ var saveButton = document.querySelector('.locked-button');
 var searchIdeasButton = document.querySelector('.search-button');
 var searchIdeasInput = document.querySelector('.search-input');
 var gridContainer = document.querySelector('.grid-container');
+var showFavoriteIdeas = document.querySelector('.show-idea-button');
 
 
 
@@ -15,16 +16,7 @@ document.addEventListener('DOMContentLoaded', displayIdeaCard);
 inputTitle.addEventListener('keyup', lockSaveButton);
 inputBody.addEventListener('keyup', lockSaveButton);
 gridContainer.addEventListener('click', changeCard);
-
-function lockSaveButton() {
-  if (inputTitle.value === '' || inputBody.value === '') {
-    saveButton.classList.remove('save-button');
-    saveButton.disabled = true;
-  } else {
-    saveButton.classList.add('save-button');
-    saveButton.disabled = false;
-  }
-}
+showFavoriteIdeas.addEventListener('click', filterFavorites);
 
 function createIdeaCard() {
   event.preventDefault();
@@ -35,7 +27,6 @@ function createIdeaCard() {
   saveToLocalStorage(ideas);
 
   displayIdeaCard();
-  clearForm();
 }
 
 function saveToLocalStorage(ideas) {
@@ -49,7 +40,9 @@ function pullFromLocalStorage() {
 }
 
 function displayIdeaCard() {
-  pullFromLocalStorage();
+  if (localStorage.hasOwnProperty("stringIdeas")) {
+    pullFromLocalStorage();
+  }
   renderCards();
   clearForm();
   lockSaveButton();
@@ -116,9 +109,31 @@ function favoriteIdeaCard(id) {
   }
 }
 
+function filterFavorites() {
+  showFavoriteIdeas.innerText = 'Show All Ideas';
+  console.log('1st', ideas);
+  for (var i = 0; i < ideas.length; i++) {
+    if (!ideas[i].isFavorite) {
+      ideas.splice(i, 1);
+      console.log(i, ideas);
+    }
+  }
+  displayIdeaCard();
+}
+
 function clearForm() {
   inputBody.value = '';
   inputTitle.value = '';
+}
+
+function lockSaveButton() {
+  if (inputTitle.value === '' || inputBody.value === '') {
+    saveButton.classList.remove('save-button');
+    saveButton.disabled = true;
+  } else {
+    saveButton.classList.add('save-button');
+    saveButton.disabled = false;
+  }
 }
 
 function show(element) {

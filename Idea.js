@@ -18,7 +18,6 @@ class Idea {
   updateIdea() {
     if (!this.isFavorite) {
       this.isFavorite = true;
-
     } else {
       this.isFavorite = false;
     }

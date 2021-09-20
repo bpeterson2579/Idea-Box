@@ -136,6 +136,10 @@ main {
   border: none;
 }
 
+.comment-box {
+
+}
+
 .hidden {
   display: none!important;
 }

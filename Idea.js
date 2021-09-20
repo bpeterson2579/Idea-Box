@@ -4,6 +4,7 @@ class Idea {
     this.body = ideaBody;
     this.isFavorite = false;
     this.id = Date.now();
+    this.comments = [];
   }
 
   saveToStorage() {
@@ -17,7 +18,6 @@ class Idea {
   updateIdea() {
     if (!this.isFavorite) {
       this.isFavorite = true;
-
     } else {
       this.isFavorite = false;
     }

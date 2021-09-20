@@ -20,15 +20,20 @@
     </aside>
     <main>
       <form class="form-container">
-          <label class="input-label">Title</label>
-          <input type="text" class="form-input" id="titleInput">
-          <label class="input-label">Body</label>
-          <textarea class="body-input" id="bodyInput"></textarea>
-          <button class="locked-button">Save</button>
-          <section class = "input-area">
-            <input type="text" placeholder="Search ideas" class="search-input">
-            <input type="image" src="assets/search.svg" class="search-button">
-          </section>
+        <label class="input-label">Title</label>
+        <input type="text" class="form-input" id="titleInput">
+        <label class="input-label">Body</label>
+        <textarea class="body-input" id="bodyInput"></textarea>
+        <button class="locked-button">Save</button>
+        <section class = "input-area">
+          <input type="text" placeholder="Search ideas" class="search-input">
+          <input type="image" src="assets/search.svg" class="search-button">
+        </section>
+        <section class="comment-box hidden">
+          <h4 class="comment-title" id="commentTitle"></h4>
+          <textarea class="comment-input"></textarea>
+          <button class="comment-save-button">Add Comment</button>
+        </section>
       </form>
       <div class="grid-container">
       </div>

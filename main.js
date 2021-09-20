@@ -135,7 +135,7 @@ function filterFavorites() {
   gridContainer.innerHTML = '';
   for (var i = 0; i < ideas.length; i++) {
     if (ideas[i].isFavorite) {
-      renderCards(ideas[i], );
+      renderCards(ideas[i], changeFavoriteImg(ideas[i]));
     }
   }
   // gridContainer.innerHTML = '';

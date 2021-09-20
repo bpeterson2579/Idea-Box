@@ -4,6 +4,7 @@ class Idea {
     this.body = ideaBody;
     this.isFavorite = false;
     this.id = Date.now();
+    this.comments = [];
   }
 
   saveToStorage() {

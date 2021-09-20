@@ -9,6 +9,9 @@ var searchIdeasInput = document.querySelector('.search-input');
 var gridContainer = document.querySelector('.grid-container');
 var showFavoriteButton = document.querySelector('.show-filter-button');
 var showAllButton = document.querySelector('.show-all-button');
+var commentButton = document.querySelector('.comment-img');
+var commentField = document.querySelector('.comment-box');
+
 
 saveButton.addEventListener('click', createIdeaCard);
 document.addEventListener('DOMContentLoaded', displayIdeaCard);
@@ -18,6 +21,7 @@ gridContainer.addEventListener('click', changeCard);
 showFavoriteButton.addEventListener('click', filterFavorites);
 showAllButton.addEventListener('click', showAllIdeas);
 searchIdeasInput.addEventListener('keyup', searchIdeas);
+commentButton.addEventListener('click', addComment);
 
 function createIdeaCard() {
   event.preventDefault();
@@ -90,6 +94,9 @@ function renderCards(card, picture) {
         <footer class="card-footer">
           <img src="assets/comment.svg" class="comment-img">
           <p class="card-comment">Comment</p>
+          <div>
+            <textarea class="comment-box hidden"></textarea>
+          </div>
         </footer>
       </div>`
   // }
@@ -98,9 +105,9 @@ function renderCards(card, picture) {
 function changeCard(event) {
   if (event.target.classList.contains('star-img')) {
     favoriteIdeaCard(event.target.id);
-  }else if (event.target.classList.contains('delete-img')) {
+  } else if (event.target.classList.contains('delete-img')) {
     deleteIdeaCard(event.target.id);
-  }
+  } else if (event.target.classList.contains(''))
 }
 
 function deleteIdeaCard(id) {
@@ -204,6 +211,10 @@ function lockSaveButton() {
     saveButton.disabled = false;
   }
 }
+
+// function addComment() {
+//   show(commentField);
+// }
 
 function show(element) {
   element.classList.remove('hidden');

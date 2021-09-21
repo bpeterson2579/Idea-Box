@@ -12,8 +12,8 @@
       </div>
       <div class="side-bar-section1">
         <h4>Filter Starred Ideas</h4>
-        <button class="show-filter-button">Show Starred Ideas</button>
-        <button class="show-all-button hidden">Show All Ideas</button>
+        <button class="show-filter-button" id="showFilterButton">Show Starred Ideas</button>
+        <button class="show-all-button hidden" id="showAllButton">Show All Ideas</button>
       </div>
       <div class="side-bar-section2">
       </div>
@@ -24,18 +24,18 @@
         <input type="text" class="form-input" id="titleInput">
         <label class="input-label">Body</label>
         <textarea class="body-input" id="bodyInput"></textarea>
-        <button class="locked-button">Save</button>
+        <button class="locked-button" id="lockedButton">Save</button>
         <section class = "input-area">
-          <input type="text" placeholder="Search ideas" class="search-input">
+          <input type="text" placeholder="Search ideas"  class="search-input" id="searchInput">
           <input type="image" src="assets/search.svg" class="search-button">
         </section>
-        <section class="comment-box hidden">
+        <section class="comment-box hidden" id="commentBox">
           <label class="input-label" id="commentTitle"></label>
           <textarea class="comment-input" id="commentInput"></textarea>
-          <button class="comment-save-button">Add Comment</button>
+          <button class="comment-save-button" id="commentSaveButton">Add Comment</button>
         </section>
       </form>
-      <div class="grid-container">
+      <div class="grid-container" id="gridContainer">
       </div>
     </main>
   </body>

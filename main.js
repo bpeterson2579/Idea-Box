@@ -14,7 +14,6 @@ var commentTitle = document.querySelector('#commentTitle');
 var commentBox = document.querySelector('.comment-box');
 var commentInput = document.querySelector('#commentInput');
 var commentSaveButton = document.querySelector('.comment-save-button');
-// var commentDisplay = document.querySelector('.user-comment')
 
 saveButton.addEventListener('click', createIdeaCard);
 document.addEventListener('DOMContentLoaded', displayIdeaCard);
@@ -87,7 +86,7 @@ function renderCards(card, picture) {
         <footer class="card-footer">
           <img src="assets/comment.svg" class="comment-img" id="${card.id}">
           <p class="card-comment">Comment</p>
-          <p class="user-comment">${card.comments}</p>
+          <p class="user-comment">${card.comments[0]}</p>
         </footer>
       </div>`
 }
@@ -106,8 +105,6 @@ function changeCard(event) {
     for (var i = 0; i < ideas.length; i++) {
       if (ideas[i].id === Number(id)) {
         ideas.splice(i, 1);
-        // ^^^^ Maybe refactor at end of project? //
-        // ideaBox.deleteFromStorage(i);
         saveToLocalStorage(ideas);
         displayIdeaCard();
       }
@@ -176,7 +173,6 @@ function changeCard(event) {
       if(ideas[i].id === Number(id)) {
         commentTitle.innerText = ideas[i].title;
       }
-      //am work
     }
   }
 

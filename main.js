@@ -86,7 +86,7 @@ function renderCards(card, picture) {
         <footer class="card-footer">
           <img src="assets/comment.svg" class="comment-img" id="${card.id}">
           <p class="card-comment">Comment</p>
-          <p class="user-comment">${card.comments[0]}</p>
+          <p class="user-comment">${card.comments}</p>
         </footer>
       </div>`
 }
@@ -185,6 +185,7 @@ function changeCard(event) {
         ideas[i].comments.push(comment);
         saveToLocalStorage(ideas);
         displayIdeaCard();
+        hide(commentBox);
       }
     }
   }

@@ -9,6 +9,7 @@ class Idea {
 
   saveToStorage() {
     ideas.push(this);
+    saveToLocalStorage(ideas);
   }
 
   deleteFromStorage(i) {

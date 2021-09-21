@@ -41,6 +41,11 @@ main {
   border-radius: 4px 0px 0px 4px;
 }
 
+.search-button:hover {
+  transition: .25s ease-in-out;
+  transform: scale(1.1);
+}
+
 .box {
   display: flex;
   flex-direction: column;
@@ -83,6 +88,11 @@ main {
   font-weight: bold;
   font-size: 16px;
   border: none;
+}
+
+.show-filter-button:hover, .show-all-button:hover {
+  transition: .25s ease-in-out;
+  transform: scale(1.1);
 }
 
 .form-input,
@@ -136,6 +146,11 @@ main {
   border: none;
 }
 
+.save-button:hover {
+  transition: .25s ease-in-out;
+  transform: scale(1.1);
+}
+
 .comment-box {
 
 }
@@ -170,11 +185,7 @@ main {
   height: 25px;
   width: 25px;
   cursor: pointer;
-}
-
-.save-button:hover {
-  transition: .25s ease-in-out;
-  transform: scale(1.1);
+  transition: .5s ease-in-out;
 }
 
 .star-img:hover {

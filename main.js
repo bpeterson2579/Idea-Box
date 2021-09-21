@@ -1,5 +1,6 @@
 var ideas = [];
 var ideaBox;
+var comment;
 
 var inputTitle = document.querySelector('#titleInput');
 var inputBody = document.querySelector('#bodyInput');
@@ -11,7 +12,7 @@ var showFavoriteButton = document.querySelector('.show-filter-button');
 var showAllButton = document.querySelector('.show-all-button');
 var commentTitle = document.querySelector('#commentTitle');
 var commentBox = document.querySelector('.comment-box');
-var commentInput = document.querySelector('.comment-input');
+var commentInput = document.querySelector('#commentInput');
 var commentSaveButton = document.querySelector('.comment-save-button');
 
 saveButton.addEventListener('click', createIdeaCard);
@@ -32,7 +33,6 @@ function createIdeaCard() {
   ideaBox.saveToStorage();
 
   saveToLocalStorage(ideas);
-
   displayIdeaCard();
 }
 
@@ -86,7 +86,7 @@ function renderCards(card, picture) {
         <footer class="card-footer">
           <img src="assets/comment.svg" class="comment-img" id="${card.id}">
           <p class="card-comment">Comment</p>
-          <p class="user-comment">${card.comments}</p>
+          <p class="user-comment">${card.comments[0]}</p>
         </footer>
       </div>`
 }
@@ -105,8 +105,6 @@ function changeCard(event) {
     for (var i = 0; i < ideas.length; i++) {
       if (ideas[i].id === Number(id)) {
         ideas.splice(i, 1);
-        // ^^^^ Maybe refactor at end of project? //
-        // ideaBox.deleteFromStorage(i);
         saveToLocalStorage(ideas);
         displayIdeaCard();
       }
@@ -175,27 +173,20 @@ function changeCard(event) {
       if(ideas[i].id === Number(id)) {
         commentTitle.innerText = ideas[i].title;
       }
-      //am work
     }
   }
 
   function saveComment() {
     event.preventDefault();
-    var comment = new Comment(commentInput.value)
+    comment = new Comment(commentInput.value)
     for(var i = 0; i < ideas.length; i++) {
       if(ideas[i].title === commentTitle.innerText) {
-        ideas[i].comments.push(comment);
+        ideas[i].comments.push(commentInput.value);
         saveToLocalStorage(ideas);
         displayIdeaCard();
       }
     }
   }
-
-  // Need to access the section of card we want to insert comment Box
-  // Need to check that the comment box is on the card we clicked
-  // When user adds comment, should create new instance of comment class
-  // which is assigned to the proper idea object.
-  // Comment is then displayed underneath the card.
 
   function show(element) {
     element.classList.remove('hidden');

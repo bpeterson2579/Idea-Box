@@ -41,6 +41,11 @@ main {
   border-radius: 4px 0px 0px 4px;
 }
 
+.search-button:hover {
+  transition: .25s ease-in-out;
+  transform: scale(1.1);
+}
+
 .box {
   display: flex;
   flex-direction: column;

@@ -1,18 +1,17 @@
 var ideas = [];
 var ideaBox;
 
-var inputTitle = document.querySelector('#titleInput');
-var inputBody = document.querySelector('#bodyInput');
-var saveButton = document.querySelector('.locked-button');
-var searchIdeasButton = document.querySelector('.search-button');
-var searchIdeasInput = document.querySelector('.search-input');
-var gridContainer = document.querySelector('.grid-container');
-var showFavoriteButton = document.querySelector('.show-filter-button');
-var showAllButton = document.querySelector('.show-all-button');
-var commentTitle = document.querySelector('#commentTitle');
-var commentBox = document.querySelector('.comment-box');
-var commentInput = document.querySelector('.comment-input');
-var commentSaveButton = document.querySelector('.comment-save-button');
+var commentBox = document.getElementById('commentBox');
+var commentInput = document.getElementById('commentInput');
+var commentSaveButton = document.getElementById('commentSaveButton');
+var commentTitle = document.getElementById('commentTitle');
+var gridContainer = document.getElementById('gridContainer');
+var inputBody = document.getElementById('bodyInput');
+var inputTitle = document.getElementById('titleInput');
+var saveButton = document.getElementById('lockedButton');
+var searchIdeasInput = document.getElementById('searchInput');
+var showFavoriteButton = document.getElementById('showFilterButton');
+var showAllButton = document.getElementById('showAllButton');
 
 saveButton.addEventListener('click', createIdeaCard);
 document.addEventListener('DOMContentLoaded', displayIdeaCard);

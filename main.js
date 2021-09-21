@@ -104,108 +104,102 @@ function changeCard(event) {
   }
 }
 
-  function deleteIdeaCard(id) {
-    for (var i = 0; i < ideas.length; i++) {
-      if (ideas[i].id === Number(id)) {
-        ideas.splice(i, 1);
+function deleteIdeaCard(id) {
+  for (var i = 0; i < ideas.length; i++) {
+    if (ideas[i].id === Number(id)) {
+      ideas.splice(i, 1);
 
-        saveToLocalStorage(ideas);
-        displayIdeaCard();
-      }
+      saveToLocalStorage(ideas);
+      displayIdeaCard();
     }
   }
+}
 
-  function favoriteIdeaCard(id) {
-    for (var i = 0; i < ideas.length; i++) {
-      if (ideas[i].id === Number(id) && !ideas[i].isFavorite) {
-        ideas[i].isFavorite = true;
+function favoriteIdeaCard(id) {
+  for (var i = 0; i < ideas.length; i++) {
+    if (ideas[i].id === Number(id) && !ideas[i].isFavorite) {
+      ideas[i].isFavorite = true;
 
-        saveToLocalStorage(ideas);
-        displayIdeaCard();
-      } else if (ideas[i].id === Number(id) && ideas[i].isFavorite) {
-        ideas[i].isFavorite = false;
+      saveToLocalStorage(ideas);
+      displayIdeaCard();
+    } else if (ideas[i].id === Number(id) && ideas[i].isFavorite) {
+      ideas[i].isFavorite = false;
 
-        saveToLocalStorage(ideas);
-        displayIdeaCard();
-      }
+      saveToLocalStorage(ideas);
+      displayIdeaCard();
     }
   }
+}
 
-  function filterFavorites() {
-    hide(showFavoriteButton);
-    show(showAllButton);
+function filterFavorites() {
+  hide(showFavoriteButton);
+  show(showAllButton);
 
-    gridContainer.innerHTML = '';
-    for (var i = 0; i < ideas.length; i++) {
-      if (ideas[i].isFavorite) {
-        renderCards(ideas[i], changeFavoriteImg(ideas[i]));
-      }
+  gridContainer.innerHTML = '';
+  for (var i = 0; i < ideas.length; i++) {
+    if (ideas[i].isFavorite) {
+      renderCards(ideas[i], changeFavoriteImg(ideas[i]));
     }
   }
+}
 
-  function showAllIdeas() {
-    hide(showAllButton);
-    show(showFavoriteButton);
+function showAllIdeas() {
+  hide(showAllButton);
+  show(showFavoriteButton);
 
-    displayIdeaCard();
-  }
+  displayIdeaCard();
+}
 
-  function searchIdeas() {
-    gridContainer.innerHTML = ''
-    for (var i = 0; i < ideas.length; i++) {
-      if (ideas[i].title.includes(searchIdeasInput.value) || ideas[i].body.includes(searchIdeasInput.value)) {
-        renderCards(ideas[i], changeFavoriteImg(ideas[i]));
-      }
+function searchIdeas() {
+  gridContainer.innerHTML = ''
+  for (var i = 0; i < ideas.length; i++) {
+    if (ideas[i].title.includes(searchIdeasInput.value) || ideas[i].body.includes(searchIdeasInput.value)) {
+      renderCards(ideas[i], changeFavoriteImg(ideas[i]));
     }
   }
+}
 
-  function clearForm() {
-    inputBody.value = '';
-    inputTitle.value = '';
+function clearForm() {
+  inputBody.value = '';
+  inputTitle.value = '';
+}
+
+function lockSaveButton() {
+  if (inputTitle.value === '' || inputBody.value === '') {
+    saveButton.classList.remove('save-button');
+    saveButton.disabled = true;
+  } else {
+    saveButton.classList.add('save-button');
+    saveButton.disabled = false;
   }
+}
 
-  function lockSaveButton() {
-    if (inputTitle.value === '' || inputBody.value === '') {
-      saveButton.classList.remove('save-button');
-      saveButton.disabled = true;
-    } else {
-      saveButton.classList.add('save-button');
-      saveButton.disabled = false;
+function addCommentField(id) {
+  var addComment = document.createElement
+  show(commentBox);
+  for(var i = 0; i < ideas.length; i++) {
+    if(ideas[i].id === Number(id)) {
+      commentTitle.innerText = ideas[i].title;
     }
   }
+}
 
-  function addCommentField(id) {
-    var addComment = document.createElement
-    show(commentBox);
-    for(var i = 0; i < ideas.length; i++) {
-      if(ideas[i].id === Number(id)) {
-        commentTitle.innerText = ideas[i].title;
-      }
+function saveComment() {
+  event.preventDefault();
+  var comment = new Comment(commentInput.value)
+  for(var i = 0; i < ideas.length; i++) {
+    if(ideas[i].title === commentTitle.innerText) {
+      ideas[i].comments.push(comment);
+      saveToLocalStorage(ideas);
+      displayIdeaCard();
     }
   }
+}
 
-  function saveComment() {
-    event.preventDefault();
-    var comment = new Comment(commentInput.value)
-    for(var i = 0; i < ideas.length; i++) {
-      if(ideas[i].title === commentTitle.innerText) {
-        ideas[i].comments.push(comment);
-        saveToLocalStorage(ideas);
-        displayIdeaCard();
-      }
-    }
-  }
+function show(element) {
+  element.classList.remove('hidden');
+}
 
-  // Need to access the section of card we want to insert comment Box
-  // Need to check that the comment box is on the card we clicked
-  // When user adds comment, should create new instance of comment class
-  // which is assigned to the proper idea object.
-  // Comment is then displayed underneath the card.
-
-  function show(element) {
-    element.classList.remove('hidden');
-  }
-
-  function hide(element) {
-    element.classList.add('hidden');
-  }
+function hide(element) {
+  element.classList.add('hidden');
+}

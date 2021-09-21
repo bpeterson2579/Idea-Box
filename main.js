@@ -189,12 +189,6 @@ function changeCard(event) {
     }
   }
 
-  // Need to access the section of card we want to insert comment Box
-  // Need to check that the comment box is on the card we clicked
-  // When user adds comment, should create new instance of comment class
-  // which is assigned to the proper idea object.
-  // Comment is then displayed underneath the card.
-
   function show(element) {
     element.classList.remove('hidden');
   }

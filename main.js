@@ -28,7 +28,7 @@ commentSaveButton.addEventListener('click', saveComment);
 function createIdeaCard() {
   event.preventDefault();
 
-  ideaBox = new Idea(inputTitle.value, inputBody.value);
+  ideaBox = new Idea(inputTitle.value, inputBody.value,);
   ideaBox.saveToStorage();
 
   saveToLocalStorage(ideas);
@@ -86,7 +86,7 @@ function renderCards(card, picture) {
         <footer class="card-footer">
           <img src="assets/comment.svg" class="comment-img" id="${card.id}">
           <p class="card-comment">Comment</p>
-          <p class="user-comment">${card.comments[0]}</p>
+          <p class="user-comment">${card.comments}</p>
         </footer>
       </div>`
 }
@@ -169,11 +169,13 @@ function changeCard(event) {
   }
 
   function addCommentField(id) {
+    var addComment = document.createElement
     show(commentBox);
     for(var i = 0; i < ideas.length; i++) {
       if(ideas[i].id === Number(id)) {
         commentTitle.innerText = ideas[i].title;
       }
+      //am work
     }
   }
 

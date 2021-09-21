@@ -27,7 +27,7 @@ commentSaveButton.addEventListener('click', saveComment);
 function createIdeaCard() {
   event.preventDefault();
 
-  ideaBox = new Idea(inputTitle.value, inputBody.value,);
+  ideaBox = new Idea(inputTitle.value, inputBody.value);
   ideaBox.saveToStorage();
 
   saveToLocalStorage(ideas);
@@ -49,13 +49,16 @@ function displayIdeaCard() {
   if (localStorage.hasOwnProperty("stringIdeas")) {
     pullFromLocalStorage();
   }
+
   showCards();
+
   clearForm();
   lockSaveButton();
 }
 
 function showCards() {
   gridContainer.innerHTML = '';
+
   for (var i = 0; i < ideas.length; i++) {
     var picture = changeFavoriteImg(ideas[i]);
     renderCards(ideas[i], picture);
@@ -64,6 +67,7 @@ function showCards() {
 
 function changeFavoriteImg(card) {
   var starPicture;
+
   if (card.isFavorite) {
     return starPicture = "assets/star-active.svg";
   } else {
@@ -73,21 +77,21 @@ function changeFavoriteImg(card) {
 
 function renderCards(card, picture) {
   gridContainer.innerHTML += `
-      <div class="box">
-        <header class="card-header">
-          <img src=${picture} class="star-img" id="${card.id}">
-          <img src="assets/delete.svg" class="delete-img" id="${card.id}">
-        </header>
-        <div class="user-idea">
-          <h4 class="user-title">${card.title}</h4>
-          <p>${card.body}</p>
-        </div>
-        <footer class="card-footer">
-          <img src="assets/comment.svg" class="comment-img" id="${card.id}">
-          <p class="card-comment">Comment</p>
-          <p class="user-comment">${card.comments}</p>
-        </footer>
-      </div>`
+    <div class="box">
+      <header class="card-header">
+        <img src=${picture} class="star-img" id="${card.id}">
+        <img src="assets/delete.svg" class="delete-img" id="${card.id}">
+      </header>
+      <div class="user-idea">
+        <h4 class="user-title">${card.title}</h4>
+        <p>${card.body}</p>
+      </div>
+      <footer class="card-footer">
+        <img src="assets/comment.svg" class="comment-img" id="${card.id}">
+        <p class="card-comment">Comment</p>
+        <p class="user-comment">${card.comments}</p>
+      </footer>
+    </div>`
 }
 
 function changeCard(event) {
@@ -104,8 +108,7 @@ function changeCard(event) {
     for (var i = 0; i < ideas.length; i++) {
       if (ideas[i].id === Number(id)) {
         ideas.splice(i, 1);
-        // ^^^^ Maybe refactor at end of project? //
-        // ideaBox.deleteFromStorage(i);
+
         saveToLocalStorage(ideas);
         displayIdeaCard();
       }
@@ -116,10 +119,12 @@ function changeCard(event) {
     for (var i = 0; i < ideas.length; i++) {
       if (ideas[i].id === Number(id) && !ideas[i].isFavorite) {
         ideas[i].isFavorite = true;
+
         saveToLocalStorage(ideas);
         displayIdeaCard();
       } else if (ideas[i].id === Number(id) && ideas[i].isFavorite) {
         ideas[i].isFavorite = false;
+
         saveToLocalStorage(ideas);
         displayIdeaCard();
       }
@@ -129,6 +134,7 @@ function changeCard(event) {
   function filterFavorites() {
     hide(showFavoriteButton);
     show(showAllButton);
+
     gridContainer.innerHTML = '';
     for (var i = 0; i < ideas.length; i++) {
       if (ideas[i].isFavorite) {
@@ -140,6 +146,7 @@ function changeCard(event) {
   function showAllIdeas() {
     hide(showAllButton);
     show(showFavoriteButton);
+
     displayIdeaCard();
   }
 
@@ -174,7 +181,6 @@ function changeCard(event) {
       if(ideas[i].id === Number(id)) {
         commentTitle.innerText = ideas[i].title;
       }
-      //am work
     }
   }
 

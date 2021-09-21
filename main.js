@@ -1,5 +1,6 @@
 var ideas = [];
 var ideaBox;
+var comment;
 
 var commentBox = document.getElementById('commentBox');
 var commentInput = document.getElementById('commentInput');
@@ -31,7 +32,6 @@ function createIdeaCard() {
   ideaBox.saveToStorage();
 
   saveToLocalStorage(ideas);
-
   displayIdeaCard();
 }
 
@@ -89,7 +89,7 @@ function renderCards(card, picture) {
       <footer class="card-footer">
         <img src="assets/comment.svg" class="comment-img" id="${card.id}">
         <p class="card-comment">Comment</p>
-        <p class="user-comment">${card.comments}</p>
+        <p class="user-comment">${card.comments[0]}</p>
       </footer>
     </div>`
 }

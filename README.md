@@ -3,7 +3,7 @@ IdeaBox is an application that allows users to input ideas and save the ideas in
 
 ## How to Use the App:
 
-- Go to [IdeaBox.](#####################)
+- Go to [IdeaBox.](https://bpeterson2579.github.io/Idea-Box/)
 
 - To generate an idea card, users are required to input a title and body in the provided input fields.  Once the title and body are saved, an idea card will populate and display the user inputs.
 
@@ -15,7 +15,7 @@ IdeaBox is an application that allows users to input ideas and save the ideas in
 
 ## Preview:
 
-![IdeaBox-video](######################)
+![IdeaBox-video](assets/demonstration.gif)
 
 ## Primary Technologies Used:
 
@@ -32,3 +32,13 @@ IdeaBox is an application that allows users to input ideas and save the ideas in
 - [Brian Peterson](https://github.com/bpeterson2579)
 - [Katie Ammon](https://github.com/kammon10)
 - [Adam Burgess](https://github.com/aburg15)
+
+## Team Wins:
+- Able to implement localStorage successfully and have it update every time a change was made to the idea objects
+- Getting the favoriting function to toggle was extremely difficult
+- We matched the provided comp fairly closely and added some touches to improve the user experience
+
+## Team Challenges:
+- We could not get the commenting to work properly.
+- Toggling the favorited status took up way more time than any of us expected
+- We have had our fair share of git workflow issues along the way

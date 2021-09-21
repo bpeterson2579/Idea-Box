@@ -1,5 +1,6 @@
 var ideas = [];
 var ideaBox;
+var comment;
 
 var inputTitle = document.querySelector('#titleInput');
 var inputBody = document.querySelector('#bodyInput');
@@ -11,8 +12,9 @@ var showFavoriteButton = document.querySelector('.show-filter-button');
 var showAllButton = document.querySelector('.show-all-button');
 var commentTitle = document.querySelector('#commentTitle');
 var commentBox = document.querySelector('.comment-box');
-var commentInput = document.querySelector('.comment-input');
+var commentInput = document.querySelector('#commentInput');
 var commentSaveButton = document.querySelector('.comment-save-button');
+// var commentDisplay = document.querySelector('.user-comment')
 
 saveButton.addEventListener('click', createIdeaCard);
 document.addEventListener('DOMContentLoaded', displayIdeaCard);
@@ -29,10 +31,10 @@ function createIdeaCard() {
   event.preventDefault();
 
   ideaBox = new Idea(inputTitle.value, inputBody.value);
+  console.log(`b`, inputBody)
   ideaBox.saveToStorage();
 
   saveToLocalStorage(ideas);
-
   displayIdeaCard();
 }
 
@@ -179,10 +181,10 @@ function changeCard(event) {
 
   function saveComment() {
     event.preventDefault();
-    var comment = new Comment(commentInput.value)
+    comment = new Comment(commentInput.value)
     for(var i = 0; i < ideas.length; i++) {
       if(ideas[i].title === commentTitle.innerText) {
-        ideas[i].comments.push(comment);
+        ideas[i].comments.push(commentInput.value);
         saveToLocalStorage(ideas);
         displayIdeaCard();
       }

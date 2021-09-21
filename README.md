@@ -1,4 +1,4 @@
-# [IdeaBox](#############)
+# [IdeaBox](https://bpeterson2579.github.io/Idea-Box/)
 IdeaBox is an application that allows users to input ideas and save the ideas in a card format.  Once an idea card is displayed, users have the option to favorite or delete a particular card.  A comment feature is also included for each card in case a user chooses to add a comment related to an idea.
 
 ## How to Use the App:

@@ -22,8 +22,6 @@ gridContainer.addEventListener('click', changeCard);
 showFavoriteButton.addEventListener('click', filterFavorites);
 showAllButton.addEventListener('click', showAllIdeas);
 searchIdeasInput.addEventListener('keyup', searchIdeas);
-commentSaveButton.addEventListener('click', saveComment);
-
 
 function createIdeaCard() {
   event.preventDefault();
@@ -89,7 +87,7 @@ function renderCards(card, picture) {
       <footer class="card-footer">
         <img src="assets/comment.svg" class="comment-img" id="${card.id}">
         <p class="card-comment">Comment</p>
-        <p class="user-comment">${card.comments[0]}</p>
+
       </footer>
     </div>`
 }
@@ -171,28 +169,6 @@ function lockSaveButton() {
   } else {
     saveButton.classList.add('save-button');
     saveButton.disabled = false;
-  }
-}
-
-function addCommentField(id) {
-  var addComment = document.createElement
-  show(commentBox);
-  for(var i = 0; i < ideas.length; i++) {
-    if(ideas[i].id === Number(id)) {
-      commentTitle.innerText = ideas[i].title;
-    }
-  }
-}
-
-function saveComment() {
-  event.preventDefault();
-  var comment = new Comment(commentInput.value)
-  for(var i = 0; i < ideas.length; i++) {
-    if(ideas[i].title === commentTitle.innerText) {
-      ideas[i].comments.push(comment);
-      saveToLocalStorage(ideas);
-      displayIdeaCard();
-    }
   }
 }
 
